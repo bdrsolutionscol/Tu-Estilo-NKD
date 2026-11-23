@@ -9,6 +9,9 @@
 #visor { display: block; width: 100%; aspect-ratio: 768 / 610; height: auto; touch-action: none; cursor: grab; background: radial-gradient(ellipse at 48% 43%, #fbf7ec, #e7dfce 74%, #cfc8b8); }
 #visor:active { cursor: grabbing; }
 #visor:focus-visible { outline: 3px solid #225bbc; outline-offset: -4px; }
+#cambiar-vista { position: absolute; top: 4%; right: 3%; z-index: 1; min-height: 44px; padding: .65em 1em; border: 0; border-radius: 6px; background: var(--ink); color: white; font-size: .85rem; font-weight: 700; }
+#cambiar-vista:enabled:hover { background: #393e36; }
+#cambiar-vista:disabled { background: var(--muted); cursor: default; }
 .model-tag, #combinacion { pointer-events: none; }
 .base-bike { width: 100%; height: auto; }
 .scene-controls { position: absolute; inset: auto 3% 4%; display: flex; justify-content: space-between; align-items: center; gap: .4rem; }

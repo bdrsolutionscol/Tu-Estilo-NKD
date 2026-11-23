@@ -6,6 +6,7 @@ if (accesorios.some(item => item.id === inicial)) seleccion.add(inicial);
 
 const opciones = document.querySelector('#opciones');
 const capas = document.querySelector('#capas');
+const canvas = document.querySelector('#visor');
 let mostrarSeleccion3D;
 const reset = document.querySelector('#reset');
 
@@ -44,7 +45,7 @@ function actualizarVista() {
     boton.querySelector('.action').textContent = activo ? '✓ En tu moto · Quitar' : '+ Añadir a mi moto';
   }
   for (const capa of capas.children) capa.hidden = !seleccion.has(capa.dataset.id);
-  mostrarSeleccion3D?.(seleccion);
+  if (!canvas.hidden) mostrarSeleccion3D(seleccion);
   const piezas = `${cantidad} accesorio${cantidad === 1 ? '' : 's'}`;
   document.querySelector('#cantidad').textContent = `${cantidad} seleccionado${cantidad === 1 ? '' : 's'}`;
   document.querySelector('#precio').textContent = precio;
@@ -65,26 +66,47 @@ reset.addEventListener('click', () => {
 });
 actualizarVista();
 
-// La vista lateral sigue disponible si el navegador no puede iniciar o mantener WebGL.
-const canvas = document.querySelector('#visor');
+const cambiarVista = document.querySelector('#cambiar-vista');
 const foto = document.querySelector('.base-bike');
 const ayuda = document.querySelector('#ayuda-visor');
 const ayudaLateral = ayuda.textContent;
-function usarVistaLateral() {
-  mostrarSeleccion3D = undefined;
-  canvas.hidden = true;
-  foto.hidden = false;
-  capas.hidden = false;
-  ayuda.textContent = ayudaLateral;
+
+function cambiarModo(ver3D) {
+  foto.hidden = ver3D;
+  capas.hidden = ver3D;
+  canvas.hidden = !ver3D;
+  cambiarVista.setAttribute('aria-expanded', String(ver3D));
+  cambiarVista.textContent = ver3D ? 'Volver a la imagen' : 'Opción 3D';
+  ayuda.textContent = ver3D
+    ? 'Arrastra para girar la moto en 360° e inclinar la vista. También puedes usar las flechas del teclado.'
+    : ayudaLateral;
+  if (ver3D) mostrarSeleccion3D(seleccion);
 }
-try {
-  const { iniciarVisor } = await import('./visor-3d.js');
-  mostrarSeleccion3D = iniciarVisor(canvas, usarVistaLateral);
-  mostrarSeleccion3D(seleccion);
-  foto.hidden = true;
-  capas.hidden = true;
-  ayuda.textContent = 'Arrastra para girar la moto en 360° e inclinar la vista. También puedes usar las flechas del teclado.';
-} catch (error) {
-  console.warn('Vista 3D no disponible.', error);
-  usarVistaLateral();
+
+function avisarSinVisor() {
+  cambiarModo(false);
+  cambiarVista.disabled = true;
+  ayuda.textContent = 'El visor 3D no está disponible. Puedes seguir personalizando la moto en la imagen de referencia.';
 }
+
+cambiarVista.hidden = false;
+cambiarVista.addEventListener('click', async () => {
+  if (!canvas.hidden) {
+    cambiarModo(false);
+    return;
+  }
+  if (!mostrarSeleccion3D) {
+    cambiarVista.disabled = true;
+    cambiarVista.textContent = 'Cargando 3D…';
+    try {
+      const { iniciarVisor } = await import('./visor-3d.js');
+      mostrarSeleccion3D = iniciarVisor(canvas, avisarSinVisor);
+    } catch (error) {
+      console.warn('Vista 3D no disponible.', error);
+      avisarSinVisor();
+      return;
+    }
+    cambiarVista.disabled = false;
+  }
+  cambiarModo(true);
+});
