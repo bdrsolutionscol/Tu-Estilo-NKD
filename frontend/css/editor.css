@@ -6,6 +6,10 @@
 .preview { margin-left: auto; white-space: nowrap; background: #e3eadb; color: #42613d; padding: .8em 1.4em; border-radius: 2em; }
 .workbench { display: grid; grid-template-columns: 2fr 1fr; align-items: start; gap: 2.6%; }
 .scene { position: relative; overflow: hidden; border-radius: 9px; background: #e6d6c6; }
+#visor { display: block; width: 100%; aspect-ratio: 768 / 610; height: auto; touch-action: none; cursor: grab; background: radial-gradient(ellipse at 48% 43%, #fbf7ec, #e7dfce 74%, #cfc8b8); }
+#visor:active { cursor: grabbing; }
+#visor:focus-visible { outline: 3px solid #225bbc; outline-offset: -4px; }
+.model-tag, #combinacion { pointer-events: none; }
 .base-bike { width: 100%; height: auto; }
 .scene-controls { position: absolute; inset: auto 3% 4%; display: flex; justify-content: space-between; align-items: center; gap: .4rem; }
 .scene-controls button { text-transform: none; font-weight: 500; }
