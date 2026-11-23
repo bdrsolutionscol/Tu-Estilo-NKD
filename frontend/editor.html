@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Personaliza tu NKD 125 · MotoLab</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/editor.css">
+  <script type="module" src="js/editor.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="topbar wrap">
+    <a class="brand" href="index.html" aria-label="MotoLab, inicio">MOTO<span>LAB</span><small>Accesorios con carácter</small></a>
+    <span class="eyebrow studio">El laboratorio de tu próxima ruta</span>
+    <a class="text-link" href="index.html">← Volver a la tienda</a>
+  </header>
+  <main class="wrap editor" id="contenido">
+    <nav class="eyebrow crumbs" aria-label="Ruta de navegación"><a href="index.html">Inicio</a> / Personalizador</nav>
+    <div class="editor-title"><h1>Dale tu toque.</h1><p>Selecciona un accesorio y descubre tu próxima versión.</p><span class="preview">● Vista previa</span></div>
+    <div class="workbench">
+      <figure><div class="scene">
+        <img class="base-bike" src="assets/img/nkd-125.webp" width="768" height="610" alt="Vista lateral de la NKD 125 blanca">
+        <div id="capas" aria-hidden="true"></div>
+        <span class="tag model-tag">NKD 125 / Blanco</span>
+        <div class="scene-controls"><span class="tag" id="combinacion">Original · Sin accesorios</span><button class="tag" id="reset" type="button">↺ Restablecer</button></div>
+      </div><figcaption>Vista lateral de referencia. Las proporciones y el acabado pueden variar.</figcaption></figure>
+      <section class="panel" aria-label="Configuración de accesorios">
+        <p class="eyebrow">01 / Tu moto de referencia</p><h2>AKT NKD 125</h2><p class="description">Urbana &nbsp;/&nbsp; 125 cc &nbsp;/&nbsp; Blanco</p>
+        <div class="panel-subhead"><span class="eyebrow">02 / Añade tu estilo</span><small id="cantidad">0 seleccionados</small></div>
+        <div id="opciones"></div><noscript>Activa JavaScript para probar los accesorios.</noscript>
+        <div class="total"><span>Total de accesorios</span><strong id="precio">0 €</strong></div>
+        <p id="estado" class="message" role="status"></p><small class="disclaimer">Precios de ejemplo · IVA incluido · Moto no incluida</small>
+      </section>
+    </div>
+    <aside class="tip"><strong>El Lab Tip</strong><span>Prueba la cúpula, las alforjas o ambas. Pulsa de nuevo para quitar un accesorio.</span></aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,71 @@
+.topbar nav { display: flex; gap: clamp(1.3rem, 4vw, 4rem); font-size: clamp(.8rem, 1vw, 1rem); }
+.hero { display: grid; grid-template-columns: .65fr 1fr; gap: 2.3%; padding-block: clamp(1rem, 1.65vw, 2rem); }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 1rem; padding-block: 1.4vw 2.6vw; }
+.hero h1 { font-size: clamp(3.8rem, 7vw, 7.6rem); line-height: .94; }
+.intro { color: var(--muted); font-size: clamp(.95rem, 1.2vw, 1.25rem); line-height: 1.5; max-width: 24em; }
+.bike-card { position: relative; border-radius: 12px; overflow: hidden; align-self: stretch; background: #e2d5c7; }
+.bike-card > img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 1.32; }
+.bike-card figcaption { position: absolute; inset: auto 3% 4%; display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .85em 1.15em; border-radius: 5px; background: var(--paper); font-size: clamp(.7rem, .9vw, .95rem); }
+.bike-card figcaption small { display: block; color: var(--muted); margin-top: .25em; }
+.bike-card figcaption > span, .vertical-note { text-transform: uppercase; color: var(--muted); font-size: clamp(.45rem, .62vw, .65rem); }
+.vertical-note { position: absolute; right: 3.5%; bottom: 20%; writing-mode: vertical-rl; transform: rotate(180deg); }
+.benefits, footer { background: var(--ink); color: var(--paper); }
+.benefits ul { display: grid; grid-template-columns: repeat(3, 1fr); list-style: none; padding: 1.45vw 0; }
+.benefits li { display: flex; align-items: center; gap: 1.5vw; padding-left: 2vw; border-left: 1px solid #51544c; }
+.benefits li:first-child { border: 0; padding-left: 0; }
+.benefits b { font: 800 clamp(1.35rem, 2vw, 2rem)/1 var(--display); color: #a6ab9e; }
+.benefits strong, .benefits small { display: block; }
+.benefits strong { font-size: clamp(.6rem, .8vw, .8rem); text-transform: uppercase; }
+.benefits small { margin-top: .5em; font-size: clamp(.7rem, .88vw, .9rem); color: #bebfb6; }
+.section { padding-block: clamp(2.5rem, 4vw, 4.5rem); scroll-margin-top: 1rem; }
+.section h2, .route h2, .cta h2 { margin-block: .35em .45em; }
+.steps, .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2%; }
+.steps { padding: 0; margin: 1.7rem 0 0; list-style: none; counter-reset: paso; }
+.steps li { display: flex; gap: 1.8vw; border-top: 1px solid var(--line); padding-top: 1.4vw; counter-increment: paso; }
+.steps li::before { content: counter(paso, decimal-leading-zero); color: #b83918; font-size: .8rem; font-weight: bold; }
+.steps p, .grid article > p:not(.eyebrow), .route p:not(.eyebrow) { color: var(--muted); margin-top: .6em; font-size: clamp(.88rem, 1vw, 1.05rem); line-height: 1.6; }
+.steps p { max-width: 25em; }
+.catalog { border-top: 1px solid var(--line); padding-bottom: 0; }
+.section-heading, .product-title, .cta .wrap, .footer-main, .fineprint { display: flex; align-items: center; justify-content: space-between; gap: 1.2rem; }
+.section-heading { margin-bottom: .65rem; }
+.tile { position: relative; aspect-ratio: 1.87; border-radius: 7px; overflow: hidden; }
+.tile img, .route > img { width: 100%; height: 100%; object-fit: cover; }
+.tile .tag { position: absolute; left: 3.5%; top: 6%; font-size: clamp(.5rem, .58vw, .65rem); }
+.grid .eyebrow { margin-block: 1.3rem .6rem; }
+.product-title strong { white-space: nowrap; }
+.grid .text-link, .feature small { display: inline-block; margin-top: 1.2em; font-size: .83rem; }
+.grid .text-link { color: #b53615; }
+.feature small { color: var(--muted); }
+.route { display: grid; grid-template-columns: 1.6fr 1fr; gap: 4%; align-items: center; margin-block: clamp(2.4rem, 4vw, 5rem); }
+.route > img { aspect-ratio: 2.1; border-radius: 7px; }
+.route h2 { font-size: clamp(3rem, 5.4vw, 5.8rem); }
+.route p { max-width: 30ch; }
+.route .text-link { margin-top: 1.4em; }
+.cta { background: var(--orange); }
+.cta .wrap, footer .wrap { padding-block: clamp(2rem, 3.8vw, 4.5rem); }
+.cta .eyebrow { color: var(--ink); }
+.cta h2 { font-size: clamp(2.6rem, 4.5vw, 5rem); }
+footer p, footer a { font-size: .85rem; }
+.footer-main p, .fineprint { color: #bec2b8; }
+.footer-main p { margin-block: .6rem; }
+.fineprint { border-top: 1px solid #4d5149; margin-top: 2rem; padding-top: 1rem; font-size: .7rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .enter { animation: reveal .55s ease-out both; }
+  @keyframes reveal { from { opacity: .25; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+}
+@media (max-width: 760px) {
+  .topbar { flex-wrap: wrap; padding-block: 1rem .75rem; gap: .9rem; }
+  .topbar nav { order: 3; width: 100%; justify-content: space-between; }
+  .hero { grid-template-columns: 1fr; gap: 1.3rem; }
+  .hero-copy { gap: 1.1rem; }
+  .hero h1 { font-size: clamp(4rem, 13vw, 6rem); }
+  .bike-card > img { aspect-ratio: 1.32; }
+  .benefits ul { padding-block: 1rem; }
+  .benefits li { align-items: flex-start; gap: .45rem; flex-direction: column; }
+  .steps, .grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .steps li { padding-top: 1rem; gap: 1rem; }
+  .section-heading, .cta .wrap { align-items: flex-start; flex-direction: column; gap: .5rem; }
+  .section-heading { margin-bottom: 1.4rem; }
+  .route { grid-template-columns: 1fr; gap: 1.5rem; }
+  .footer-main, .fineprint { align-items: flex-start; flex-wrap: wrap; }
+}
